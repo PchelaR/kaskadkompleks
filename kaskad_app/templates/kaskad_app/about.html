@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}О компании{% endblock %}
+{% block content %}
+    <div class="container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb mt-4 mb-0">
+                <li class="breadcrumb-item"><a href="{% url 'homepage' %}">Главная</a></li>
+                <li class="breadcrumb-item active" aria-current="page">О компании</li>
+            </ol>
+        </nav>
+    </div>
+    <div class="container">
+        <div class="row">
+            <h1 class="my-4 fw-bold">О компании</h1>
+            <div>
+                {{ about.text|safe }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

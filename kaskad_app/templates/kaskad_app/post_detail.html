@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ post_detail.title }}{% endblock %}
+
+{% block content %}
+<div class="container">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb mt-4 mb-0">
+            <li class="breadcrumb-item"><a href="{% url 'homepage' %}">Главная</a></li>
+            {% if post_detail.type == 'New' %}
+            <li class="breadcrumb-item"><a href="{% url 'news' %}">Новости</a></li>
+            {% elif post_detail.type == 'Article' %}
+            <li class="breadcrumb-item"><a href="{% url 'articles' %}">Статьи</a></li>
+            {% endif %}
+            <li class="breadcrumb-item active" aria-current="page">{{ post_detail.title }}</li>
+        </ol>
+    </nav>
+</div>
+<div class="container">
+    <div class="row g-5">
+        <div class="col-md-8">
+            <article class="blog-post">
+                <h1 class="display-5 link-body-emphasis my-4 fw-bold">{{ post_detail.title }}</h1>
+                <small class="text-body-secondary">{{ post_detail.created_at }}</small>
+                <div class="mt-4">{{ post_detail.text|safe }}</div>
+                {% if post_detail.images.all %}
+                <div class="row g-3 mt-4">
+                    <h4 class="fw-bold">Дополнительные изображения</h4>
+                    {% for image in post_detail.images.all|slice:":3" %}
+                    <div class="col-12 col-md-4">
+                        <a href="{{ image.image.url }}" data-lightbox="post-gallery" data-title="Post image">
+                            <img src="{{ image.image.url }}" alt="Post image" class="img-fluid rounded">
+                        </a>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </article>
+        </div>
+
+        <div class="col-md-4">
+            <div class="position-sticky my-4" style="top: 6rem;">
+                <div>
+                    <h4>Новости</h4>
+                    {% for post in posts %}
+                    {% if post.type == 'New' %}
+                    <ul class="list-unstyled mb-0">
+                        <li>
+                            <a class="d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center py-3 link-body-emphasis text-decoration-none border-top"
+                               href="{% url 'post_detail' slug=post.slug %}">
+                                {% if post.images.all %}
+                                {% with post.images.all.0 as first_image %}
+                                <img src="{{ first_image.image.url }}" alt="Post image"
+                                     style="width: 100%; height: 96px; object-fit: cover;" class="rounded">
+                                {% endwith %}
+                                {% else %}
+                                <svg class="bd-placeholder-img rounded" width="100%" height="96"
+                                     xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
+                                     preserveAspectRatio="xMidYMid slice" focusable="false">
+                                    <rect width="100%" height="100%" fill="#777"></rect>
+                                </svg>
+                                {% endif %}
+                                <div class="col-lg-8">
+                                    <h6 class="mb-0">{{ post.title }}</h6>
+                                    <small class="text-body-secondary">{{ post.created_at|date:"d M Y" }}</small>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+                <div>
+                    <h4>Статьи</h4>
+                    {% for post in posts %}
+                    {% if post.type == 'Article' %}
+                    <ul class="list-unstyled mb-0">
+                        <li>
+                            <a class="d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center py-3 link-body-emphasis text-decoration-none border-top"
+                               href="{% url 'post_detail' slug=post.slug %}">
+                                {% if post.images.all %}
+                                {% with post.images.all.0 as first_image %}
+                                <img src="{{ first_image.image.url }}" alt="Post image"
+                                     style="width: 100%; height: 96px; object-fit: cover;" class="rounded">
+                                {% endwith %}
+                                {% else %}
+                                <svg class="bd-placeholder-img rounded" width="100%" height="96"
+                                     xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
+                                     preserveAspectRatio="xMidYMid slice" focusable="false">
+                                    <rect width="100%" height="100%" fill="#777"></rect>
+                                </svg>
+                                {% endif %}
+                                <div class="col-lg-8">
+                                    <h6 class="mb-0">{{ post.title }}</h6>
+                                    <small class="text-body-secondary">{{ post.created_at|date:"d M Y" }}</small>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

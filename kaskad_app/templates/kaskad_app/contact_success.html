@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}Успешно отправлено{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row justify-content-center align-items-center" style="height: 60vh;">
+            <div class="col-md-6 text-center">
+                <div>
+                    <h1 class="display-4 fw-bold my-4">Успешно!</h1>
+                    <p class="lead">Ваше сообщение было успешно отправлено.</p>
+                    <p>Вы будете перенаправлены на страницу <a href="/contacts/">контакты</a> через несколько секунд.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        setTimeout(function() {
+            window.location.href = "/contacts/";
+        }, 5000); // 5000 миллисекунд = 5 секунд
+    </script>
+{% endblock %}

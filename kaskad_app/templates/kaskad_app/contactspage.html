@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block title %}Связаться с нами{% endblock %}
+
+{% block content %}
+<div class="container">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb mt-4 mb-0">
+            <li class="breadcrumb-item"><a href="{% url 'homepage' %}">Главная</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Контакты</li>
+        </ol>
+    </nav>
+</div>
+<div class="container">
+    <div class="row g-4">
+        <div class="col-md-6 d-flex flex-column">
+            <div class="flex-grow-1">
+                <h1 class="my-3 fw-bold">Связаться с нами</h1>
+
+                <form method="post" action="{% url 'contact' %}">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="btn btn-primary">Отправить</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="col-md-6 d-flex flex-column">
+            <div class="flex-grow-1">
+                <h3 class="my-3 fw-bold">Мы находимся здесь</h3>
+                <div class="mb-4">
+                    <iframe
+                            src="#"
+                            frameborder="0"
+                            allowfullscreen="true"
+                            class="w-100 rounded"
+                            style="height: 300px;">
+                    </iframe>
+                </div>
+                <div class="contact-info">
+                    <h4 class="fw-bold">Контактная информация</h4>
+                    <ul class="list-unstyled">
+                        <li><i class="bi bi-building me-2"></i>Адрес</li>
+                        <li><i class="bi bi-telephone me-2"></i>+0 (0000)00-00-00</li>
+                        <li><i class="bi bi-envelope me-2"></i>email@mail.ru</li>
+                    </ul>
+                    <div class="mt-3">
+                        <a href="https://t.me/kaskadkm"
+                           class="me-2 text-decoration-none text-body-secondary" style="font-size:24px">
+                            <i class="bi bi-telegram"></i>
+                        </a>
+                        <a href="https://wa.me/79128276791"
+                           class="me-2 text-decoration-none text-body-secondary" style="font-size:24px">
+                            <i class="bi bi-whatsapp"></i>
+                        </a>
+                        <a href="https://www.youtube.com/@user-ds3ry4nz6m"
+                           class="text-decoration-none text-body-secondary" style="font-size:24px">
+                            <i class="bi bi-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

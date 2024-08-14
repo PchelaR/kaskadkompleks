@@ -1,0 +1,23 @@
+# Системные файлы
+.DS_Store
+Thumbs.db
+
+venv/
+.env
+db.sqlite3
+
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+/kaskad_app/migrations
+/kaskad_app/cache
+/static
+/media
+
+.idea/
+.vscode/
+
+*.log
+*.tmp

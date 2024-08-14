@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ service_detail.title }}{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb mt-4 mb-0">
+                <li class="breadcrumb-item"><a href="{% url 'homepage' %}">Главная</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'services' %}">Услуги</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{{ service_detail.title }}</li>
+            </ol>
+        </nav>
+    </div>
+    <div class="container">
+        <div class="row">
+            <article class="blog-post">
+                <h1 class="display-5 link-body-emphasis my-4 fw-bold">{{ service_detail.title }}</h1>
+                <div class="mt-4">{{ service_detail.text|safe }}</div>
+            </article>
+        </div>
+    </div>
+{% endblock %}

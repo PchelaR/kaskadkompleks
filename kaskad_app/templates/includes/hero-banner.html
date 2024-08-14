@@ -1,0 +1,16 @@
+{% for hero_banner in hero_banners %}
+<div class="position-relative" id="hero-banner">
+    <img src="{{ hero_banner.image.url }}" alt="{{ hero_banner.title }}" class="background-image">
+    <div class="container">
+        <div class="position-absolute top-50 translate-middle-y text-light container-text">
+            <h1 class="display-5 fw-bold mb-3">{{ hero_banner.title }}</h1>
+            <p class="lead">{{ hero_banner.text }}</p>
+            <div class="d-grid gap-2 d-md-flex">
+                {% for button in hero_banner.buttons.all %}
+                    <a href="{% url button.link %}" class="btn btn-primary btn-lg px-4 me-md-2">{{ button.title }}</a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}

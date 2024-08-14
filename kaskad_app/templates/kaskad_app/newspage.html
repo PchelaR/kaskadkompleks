@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}Новости{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb mt-4 mb-0">
+                <li class="breadcrumb-item"><a href="{% url 'homepage' %}">Главная</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Новости</li>
+            </ol>
+        </nav>
+    </div>
+    {% include 'includes/new.html' %}
+    {% include 'includes/pagination.html' %}
+{% endblock %}

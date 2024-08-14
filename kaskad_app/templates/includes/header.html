@@ -1,0 +1,47 @@
+{% load static %}
+
+{% block content %}
+<header id="site-header" class="p-3 border-bottom fixed-top bg-light">
+    <div class="container">
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-between">
+            <a href="{% url 'homepage' %}"
+               class="d-flex align-items-center mb-lg-0 link-body-emphasis text-decoration-none">
+                <img src="{% static 'svg/your_logo' %}" alt="logo" class="img-fluid">
+            </a>
+
+            <button class="navbar-toggler d-lg-none ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="bi bi-list"></i>
+            </button>
+
+            <nav class="d-none d-lg-block">
+                <ul class="nav col-12 col-lg-auto mb-2 justify-content-center mb-md-0 d-flex">
+                    <li><a href="{% url 'about' %}" class="nav-link">О компании</a></li>
+                    <li><a href="{% url 'news' %}" class="nav-link">Новости</a></li>
+                    <li><a href="{% url 'articles' %}" class="nav-link">Статьи</a></li>
+                    <li><a href="{% url 'services' %}" class="nav-link">Услуги</a></li>
+                    <li><a href="{% url 'contact' %}" class="nav-link">Контакты</a></li>
+                </ul>
+            </nav>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <nav>
+                    <ul class="nav col-12 col-lg-auto mt-4 justify-content-center mb-md-0 d-flex">
+                        <li><a href="{% url 'about' %}" class="nav-link px-0 py-2">О компании</a></li>
+                        <li><a href="{% url 'news' %}" class="nav-link px-0 py-2">Новости</a></li>
+                        <li><a href="{% url 'articles' %}" class="nav-link px-0 py-2">Статьи</a></li>
+                        <li><a href="{% url 'services' %}" class="nav-link px-0 py-2">Услуги</a></li>
+                        <li><a href="{% url 'contact' %}" class="nav-link px-0 py-2">Контакты</a></li>
+                    </ul>
+                </nav>
+            </div>
+
+            <form id="search-bar" class="d-none d-lg-block col-12 col-lg-auto mb-3 mb-lg-0" role="search">
+                {% csrf_token %}
+                <input type="search" class="form-control" placeholder="Поиск..." aria-label="Search" id="search-input">
+            </form>
+        </div>
+        {% include 'includes/result_box.html' %}
+    </div>
+</header>
+{% endblock %}

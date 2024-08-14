@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}Страница не найдена{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row justify-content-center align-items-center" style="height: 60vh;">
+            <div class="col-md-6 text-center">
+                <div>
+                    <h1 class="display-4 fw-bold my-4">404 - Страница не найдена</h1>
+                    <p class="lead">К сожалению, страница, которую вы ищете, не существует.</p>
+                    <a href="{% url 'homepage' %}">Вернуться на главную страницу</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
